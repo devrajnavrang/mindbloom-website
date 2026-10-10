@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindBloom - Youth Mental Wellness</title>
+    <style>
+        :root {
+            --primary: #2e7d32;
+            --primary-light: #4caf50;
+            --bg-color: #f4f9f4;
+            --text-color: #333333;
+            --white: #ffffff;
+            --gray: #666666;
+            --border-radius: 12px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* Header & Nav */
+        header {
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            background: var(--primary);
+            color: var(--white);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .logo-text {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--gray);
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Main Sections */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .badge {
+            background: #e8f5e9;
+            color: var(--primary);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            color: #1b5e20;
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+            color: #1b5e20;
+        }
+
+        p {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .stat-card {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            text-align: center;
+        }
+
+        .stat-card strong {
+            display: block;
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 0.3rem;
+        }
+
+        .stat-card span {
+            font-size: 0.85rem;
+            color: var(--gray);
+        }
+
+        .preview-box {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .chat-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #eeeeee;
+            padding-bottom: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .chat-user {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: bold;
+        }
+
+        .chat-status {
+            background: #e8f5e9;
+            color: var(--primary);
+            font-size: 0.8rem;
+            padding: 0.2rem 0.6rem;
+            border-radius: 10px;
+        }
+
+        .chat-body {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            min-height: 180px;
+            justify-content: center;
+        }
+
+        .bubble {
+            padding: 0.8rem 1rem;
+            border-radius: 10px;
+            max-width: 85%;
+            font-size: 0.95rem;
+            word-wrap: break-word;
+        }
+
+        .bubble.bot {
+            background: #f1f8f1;
+            align-self: flex-start;
+            color: #2c3e50;
+        }
+
+        .bubble.user {
+            background: var(--primary);
+            color: var(--white);
+            align-self: flex-end;
+        }
+
+        /* Problem Section */
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .problem-card {
+            background: var(--white);
+            padding: 2.5rem 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            transition: transform 0.3s;
+        }
+
+        .problem-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .problem-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .problem-card h3 {
+            margin-bottom: 0.8rem;
+            color: #2c3e50;
+        }
+
+        /* Solution Section */
+        .solution-container {
+            background: var(--white);
+            padding: 4rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .solution-checks {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            margin-top: 2rem;
+        }
+
+        .check-item {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        .check-icon {
+            background: #e8f5e9;
+            color: var(--primary);
+            width: 25px;
+            height: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        /* Chatbot Live Q&A Section */
+        .chatbot-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .interactive-chat-box {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chat-screen {
+            padding: 1.5rem;
+            height: 280px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            background: #fafafa;
+        }
+
+        .chat-actions {
+            padding: 0.6rem 1rem;
+            background: var(--white);
+            border-top: 1px solid #eeeeee;
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+        }
+
+        .action-btn {
+            background: #e8f5e9;
+            color: var(--primary);
+            border: 1px solid #c8e6c9;
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.75rem;
+            text-align: left;
+            transition: all 0.2s;
+        }
+
+        .action-btn:hover {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .action-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Text Area & Button Container */
+        .chat-textarea-area {
+            display: flex;
+            flex-direction: column;
+            padding: 0.8rem 1rem;
+            background: var(--white);
+            border-top: 1px solid #eeeeee;
+            gap: 8px;
+        }
+
+        .chat-textarea-area textarea {
+            width: 100%;
+            height: 60px;
+            padding: 0.6rem;
+            border: 1px solid #cccccc;
+            border-radius: 8px;
+            outline: none;
+            font-size: 0.85rem;
+            resize: none;
+        }
+
+        .chat-textarea-area textarea:focus {
+            border-color: var(--primary);
+        }
+
+        .chat-textarea-area button {
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 0.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.9rem;
+            transition: background 0.2s;
+            align-self: flex-end;
+            width: 100px;
+        }
+
+        .chat-textarea-area button:hover {
+            background: #1b5e20;
+        }
+
+        .chat-textarea-area button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Impact Section */
+        .impact-box {
+            background: linear-gradient(135deg, #1b5e20, #2e7d32);
+            color: var(--white);
+            padding: 4rem;
+            border-radius: 20px;
+            text-align: center;
+        }
+
+        .impact-box h3 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+            color: var(--white);
+        }
+
+        .impact-box p {
+            color: #e8f5e9;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2.5rem;
+            background: var(--white);
+            color: var(--gray);
+            border-top: 1px solid #e0e0e0;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 900px) {
+            .hero-section, .solution-container, .chatbot-grid, .problem-grid, .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header & Navigation -->
+    <header>
+        <nav>
+            <div class="logo-container">
+                <div class="logo-icon">M</div>
+                <span class="logo-text">MindBloom</span>
+            </div>
+            <div class="nav-links">
+                <a href="#problem">Problem</a>
+                <a href="#solution">Solution</a>
+                <a href="#chatbot">AI Chatbot</a>
+                <a href="#impact">Impact</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section>
+            <div class="hero-section">
+                <div>
+                    <span class="badge">Youth mental wellness</span>
+                    <h1>When support is missing, stress grows into anxiety.</h1>
+                    <p>
+                        Many young people struggle silently. Without timely support, everyday pressure can build into emotional exhaustion, panic, and long-term mental health challenges.
+                    </p>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <strong>1 in 5</strong>
+                            <span>youth face issues</span>
+                        </div>
+                        <div class="stat-card">
+                            <strong>85%</strong>
+                            <span>need safe support</span>
+                        </div>
+                        <div class="stat-card">
+                            <strong>24/7</strong>
+                            <span>digital guidance</span>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="preview-box">
+                        <div class="chat-header">
+                            <div class="chat-user">
+                                <span>🌿 MindBloom AI</span>
+                            </div>
+                            <span class="chat-status">Online</span>
+                        </div>
+                        <div class="chat-body">
+                            <div class="bubble bot">Hi, I’m here to help you check in with how you're feeling today.</div>
+                            <div class="bubble user">I feel overwhelmed and anxious lately.</div>
+                            <div class="bubble bot">That sounds heavy. Let’s take a quick pause — type or select a question below.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Problem Section -->
+        <section id="problem">
+            <div style="text-align: center; max-width: 700px; margin: 0 auto;">
+                <h2>The problem is growing</h2>
+                <p>The lack of accessible mental health support among youth leads to stress, isolation, and anxiety. Too often, students and teens do not know where to turn.</p>
+            </div>
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <div class="problem-icon">😵</div>
+                    <h3>Stress overload</h3>
+                    <p>School, social pressure, and online life can create constant emotional strain without healthy outlets or guidance.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon">🤐</div>
+                    <h3>Silent suffering</h3>
+                    <p>Many young people hesitate to talk about how they feel due to stigma, fear, or lack of trusted adults.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon">💭</div>
+                    <h3>Anxiety escalation</h3>
+                    <p>Without early intervention, stress can grow into anxiety, sleep issues, panic, and reduced confidence.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Solution Section -->
+        <section id="solution">
+            <div class="solution-container">
+                <div>
+                    <span class="badge">Our solution</span>
+                    <h2>A safe, supportive digital space for youth mental wellness</h2>
+                    <p>
+                        This project creates an AI-powered chatbot designed for mental wellness check-ins, emotional support, and simple guidance when young people need someone to talk to.
+                    </p>
+                    <div class="solution-checks">
+                        <div class="check-item">
+                            <div class="check-icon">✓</div>
+                            <div><strong>Daily emotional check-ins:</strong> Quick, friendly assessments that help students reflect on how they feel.</div>
+                        </div>
+                        <div class="check-item">
+                            <div class="check-icon">✓</div>
+                            <div><strong>Guided coping support:</strong> Practical exercises such as breathing, journaling, and grounding techniques.</div>
+                        </div>
+                        <div class="check-item">
+                            <div class="check-icon">✓</div>
+                            <div><strong>Encouragement & resources:</strong> Gentle prompts and pathways for further professional help when needed.</div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="stat-card" style="background: var(--bg-color); border: 2px dashed var(--primary-light);">
+                        <strong style="font-size: 3rem; color: var(--primary);">58%</strong>
+                        <span style="font-size: 1rem;">Youth state they prefer digital anonymity before opening up to peers or family.</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AI Q&A Chatbot Section -->
+        <section id="chatbot">
+            <div class="chatbot-grid">
+                <div>
+                    <h2>Interactive Wellness Q&A Bot</h2>
+                    <p>
+                        Have custom health or wellness questions? Type your personal questions into the text area below or use the quick buttons, then click **Send** to receive instant chatbot guidance.
+                    </p>
+                </div>
+                <div>
+                    <div class="interactive-chat-box">
+                        <div class="chat-header" style="padding: 1rem 1.5rem; margin-bottom: 0;">
+                            <div class="chat-user">
+                                <span>🤖 MindBloom Q&A Bot</span>
+                            </div>
+                            <span class="chat-status" id="botStatus">Ready</span>
+                        </div>
+                        <div class="chat-screen" id="chatScreen">
+                            <div class="bubble bot">Hello! I am your wellness assistant. Type your questions below and click Send! 👇</div>
+                        </div>
+                        
+                        <!-- Quick Question Options -->
+                        <div class="chat-actions" id="buttonContainer">
+                            <button class="action-btn" onclick="submitQuery('How can I manage daily exam or school stress?')">💡 Quick Q: How to manage school stress?</button>
+                            <button class="action-btn" onclick="submitQuery('What are some tips for better sleep and rest?')">💡 Quick Q: Tips for better sleep?</button>
+                        </div>
+
+                        <!-- User Text Area & Send Button -->
+                        <div class="chat-textarea-area">
+                            <textarea id="userInputText" placeholder="Type your personal health/wellness question here..." onkeypress="handleKeyPress(event)"></textarea>
+                            <button id="sendBtn" onclick="handleUserSubmit()">Send</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Impact Section -->
+        <section id="impact">
+            <div class="impact-box">
+                <h3>Early support can change everything.</h3>
+                <p>
+                    By making mental wellness support more accessible, we can reduce stress, prevent anxiety from worsening, and help youth feel seen, heard, and supported every step of the way.
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        © 2026 MindBloom • Supporting youth mental wellness through AI-powered guidance
+    </footer>
+
+    <!-- Text Area Chatbot Script -->
+    <script>
+        let isTyping = false;
+
+        function typeText(element, text, speed = 15, callback) {
+            let i = 0;
+            function typing() {
+                if (i < text.length) {
+                    let char = text.charAt(i);
+                    if (char === '\n') {
+                        element.innerHTML += '<br>';
+                    } else {
+                        element.innerHTML += char;
+                    }
+                    i++;
+                    const screen = document.getElementById('chatScreen');
+                    screen.scrollTop = screen.scrollHeight;
+                    setTimeout(typing, speed);
+                } else if (callback) {
+                    callback();
+                }
+            }
+            typing();
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === 'Enter' && !event.shiftKey) {
+                event.preventDefault();
+                handleUserSubmit();
+            }
+        }
+
+        function handleUserSubmit() {
+            const textareaField = document.getElementById('userInputText');
+            const query = textareaField.value.trim();
+            if (query === "" || isTyping) return;
+            
+            textareaField.value = "";
+            submitQuery(query);
+        }
+
+        function getBotAnswer(question) {
+            const q = question.toLowerCase();
+            
+            if (q.includes('stress') || q.includes('exam') || q.includes('pressure') || q.includes('study')) {
+                return "To manage stress effectively:\n1. Break your tasks into manageable 15-minute segments.\n2. Take short breaks to stretch or walk.\n3. Practice controlled deep breathing to calm your nervous system.";
+            } else if (q.includes('sleep') || q.includes('rest') || q.includes('tired') || q.includes('insomnia')) {
+                return "For better sleep hygiene:\n1. Disconnect from phones/screens 30 minutes before bed.\n2. Keep your bedroom cool, dark, and quiet.\n3. Follow a consistent sleep schedule every single day.";
+            } else if (q.includes('burnout') || q.includes('focus') || q.includes('concentrate') || q.includes('tired')) {
+                return "Handling burnout requires taking a pause:\n1. Step away from your work for a complete mental reset.\n2. Hydrate and eat balanced nutrition.\n3. Talk about your workload with someone you trust.";
+            } else if (q.includes('talk') || q.includes('help') || q.includes('heavy') || q.includes('sad') || q.includes('depress')) {
+                return "You don't have to navigate heavy feelings entirely alone. Consider speaking with a school counselor, trusted family member, or professional helpline text line. Sharing what you carry is a sign of immense strength.";
+            } else {
+                return "Thank you for asking! Maintaining health and wellness is an ongoing journey. Always remember to practice self-kindness, prioritize regular physical movement, and seek professional guidance if symptoms persist.";
+            }
+        }
+
+        function submitQuery(questionText) {
+            if (isTyping) return;
+            isTyping = true;
+
+            // Disable buttons and textarea temporarily
+            const buttons = document.querySelectorAll('.action-btn');
+            buttons.forEach(btn => btn.disabled = true);
+            const textareaField = document.getElementById('userInputText');
+            const sendButton = document.getElementById('sendBtn');
+            textareaField.disabled = true;
+            sendButton.disabled = true;
+
+            const screen = document.getElementById('chatScreen');
+            const statusIndicator = document.getElementById('botStatus');
+
+            // 1. Type User Question
+            const userBubble = document.createElement('div');
+            userBubble.className = 'bubble user';
+            screen.appendChild(userBubble);
+            
+            typeText(userBubble, questionText, 15, () => {
+                statusIndicator.innerText = "Typing...";
+
+                // Short delay before chatbot replies
+                setTimeout(() => {
+                    const botAnswer = getBotAnswer(questionText);
+
+                    // 2. Type Bot Response
+                    const botBubble = document.createElement('div');
+                    botBubble.className = 'bubble bot';
+                    screen.appendChild(botBubble);
+
+                    typeText(botBubble, botAnswer, 15, () => {
+                        statusIndicator.innerText = "Ready";
+                        isTyping = false;
+                        
+                        // Re-enable elements
+                        buttons.forEach(btn => btn.disabled = false);
+                        textareaField.disabled = false;
+                        sendButton.disabled = false;
+                        textareaField.focus();
+                    });
+                }, 400);
+            });
+        }
+    </script>
+</body>
+</html>
